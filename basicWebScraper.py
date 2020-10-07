@@ -6,7 +6,6 @@
 #   !!  I suggest having "better comments" enabled if you use vscode as it allows for colour coded comments for specific sections
 
 from selenium import webdriver
-#   this line gives access to keys on the keyboard
 from selenium.webdriver.common.keys import Keys                                         
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -21,7 +20,7 @@ driver.get("https://example.com")
 # print(driver.title)
 
 #   * This section shows action chains and automation/ clicking
-#   this will make scripr wait 10 seconds to load the page or whatever else before running the script so that all elements are on the page
+#   this will make script wait 10 seconds to load the page or whatever else before running the script so that all elements are on the page
 driver.implicitly_wait(10)
 #   the element of the webpage that you want to put an action onto
 element = driver.find_element_by_id("elementID")
