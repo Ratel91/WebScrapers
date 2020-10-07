@@ -11,6 +11,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
@@ -19,33 +20,52 @@ driver = webdriver.Chrome(PATH)
 driver.get("https://example.com")
 # print(driver.title)
 
-#   *   This section will be basic page navigation
-link = driver.find_element_by_link_text("Python Script")
-link.click()
+#   * This section shows action chains and automation/ clicking
+#   this will make scripr wait 10 seconds to load the page or whatever else before running the script so that all elements are on the page
+driver.implicitly_wait(10)
+#   the element of the webpage that you want to put an action onto
+element = driver.find_element_by_id("elementID")
+#   you can add condiitions within ther elementID such as for loops, if statement etc
+element_count = driver.find_element_by_id("elementID")
+items = [driver.find_element_by_id("elementID")]
+#   the action you want to perform, for example click
+actions = ActionChains(driver)
+actions.click()
 
-try:
-    element = WebDriverWait(driver, 10).until(   
-#   the main variable here is the elemennt you want for example LINK_TEXT="What you want to click" you can specify any element                          
-        EC.presence_of_element_located((By.LINK_TEXT, "first element you want to click"))     
-    )
-    element.click()
+#   how many times you want to press click
+for i in range(10):
+    actions.perform()
+    count = element_count.text
+    actions.perform()
+#   this print will print out to terminal
+    print(count)
+# #   *   This section will be basic page navigation
+# link = driver.find_element_by_link_text("Python Script")
+# link.click()
 
-    element = WebDriverWait(driver, 10).until(                          
-        EC.presence_of_element_located((By.ID, "second element you want to click"))     
-    )
-#   this clears all the text that is in searchbox you want to search in
-    element.clear()
-    element.click()                                       
-#   you can use finally or except here, except has been used incase the piece of code doesnt work                                                 
-except: 
-    driver.quit()
+# try:
+#     element = WebDriverWait(driver, 10).until(   
+# #   the main variable here is the elemennt you want for example LINK_TEXT="What you want to click" you can specify any element                          
+#         EC.presence_of_element_located((By.LINK_TEXT, "first element you want to click"))     
+#     )
+#     element.click()
 
-#   *   This section is for searching information on a website or webpage
-#   ?   when searching for someting specfic on a wepage or website first look for the ID if not available 
-#   ?   then -> name if not available 
-#   ?   then -> class
-#   this looks for the search box on the website by the 'name'
-# search = driver.find_element_by_name("s")     
+#     element = WebDriverWait(driver, 10).until(                          
+#         EC.presence_of_element_located((By.ID, "second element you want to click"))     
+#     )
+# #   this clears all the text that is in searchbox you want to search in
+#     element.clear()
+#     element.click()                                       
+# #   you can use finally or except here, except has been used incase the piece of code doesnt work                                                 
+# except: 
+#     driver.quit()
+
+# #   *   This section is for searching information on a website or webpage
+# #   ?   when searching for someting specfic on a wepage or website first look for the ID if not available 
+# #   ?   then -> name if not available 
+# #   ?   then -> class
+# #   this looks for the search box on the website by the 'name'
+# # search = driver.find_element_by_name("s")     
 # #   this is the search parameters that you want to look for in the search box on the webpage                                        
 # search.send_keys("test")                                                              
 # search.send_keys(Keys.RETURN)
