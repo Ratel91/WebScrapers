@@ -16,11 +16,11 @@ import time
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 
-driver.get("https://techwithtim.net")
+driver.get("https://example.com")
 # print(driver.title)
 
 #   *   This section will be basic page navigation
-link = driver.find_element_by_link_text("Python Programming")
+link = driver.find_element_by_link_text("Python Script")
 link.click()
 
 try:
